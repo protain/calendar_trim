@@ -53,6 +53,9 @@ fn main()-> Result<(), std::io::Error> {
             // check task_date => reflect do_write
             do_write = task_date.timestamp() > dt_now.timestamp();
         }
+        if line.trim_end() == "END:VCALENDAR" {
+            do_write = true;
+        }
 
         if line.starts_with("CREATED") {
             let mut sp = line.split(":");
